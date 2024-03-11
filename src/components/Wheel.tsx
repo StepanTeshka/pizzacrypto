@@ -44,7 +44,7 @@ export const Wheel = () => {
     <div className="flex justify-center items-center">
       <div className="relative w-96 h-96">
         <div
-          className="bg-blue-500 rounded-full w-full h-full relative flex justify-center items-center"
+          className="bg-blue-500 rounded-full w-full h-full relative flex justify-center items-center duration-300"
           style={{ transform: `rotate(${rotation}deg)` }}
         >
           {segments.map((segment, index) => (
