@@ -1,4 +1,10 @@
-import { BaseError, useAccount, useConfig, useReadContract } from "wagmi";
+import {
+  BaseError,
+  useAccount,
+  useBalance,
+  useConfig,
+  useReadContract,
+} from "wagmi";
 import { writeContract } from "wagmi/actions";
 import Button from "~/components/ui/Button";
 import { abi } from "../utils/abi";
@@ -22,6 +28,10 @@ export const InformationParicipate = () => {
     }
   };
 
+  const balance = useBalance({
+    address: address,
+  });
+
   const result = useReadContract({
     address: addressContract,
     abi: abi,
@@ -39,9 +49,12 @@ export const InformationParicipate = () => {
     abi: abi,
     functionName: "lengthParticipants",
   });
-    
-    const data:any[] = user.data as any[];
-    console.log(data)
+
+  const data: any[] = user.data as any[];
+  const roundedNumber = balance.data
+    ? parseFloat(Number(balance.data.formatted).toFixed(4))
+    : 0;
+
   return (
     <div>
       {data ? (
@@ -64,6 +77,9 @@ export const InformationParicipate = () => {
           {Number(result.data ? result.data : 0) * 0.000000000000000001}
         </span>{" "}
         ETH
+      </p>
+      <p>
+        on your account: <span>{roundedNumber}</span> ETH
       </p>
       <p>
         are already participating:{" "}

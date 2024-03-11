@@ -45,9 +45,6 @@ export const TimeRoulette = () => {
     };
   }, [result.data]);
 
-  if (currentTime === onEndTime) {
-    onRunRullette();
-  }
 
   return (
     <div>
