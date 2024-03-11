@@ -22,7 +22,7 @@ export const Wheel = () => {
         ? (360 / segments.length) * segments.indexOf(selectedSegment)
         : 0;
     setRotation(rotationAngle);
-  }, [lastWin]);
+  }, [lastWin, segments, selectedSegment]);
 
   const lengthParticipants = useReadContract({
     address: addressContract,

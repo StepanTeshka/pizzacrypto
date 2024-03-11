@@ -1,22 +1,17 @@
 import { BaseError, useConfig, useReadContract } from "wagmi";
-import { addressContract } from "../../config";
-import { abi } from "~/utils/abi";
+import { abi } from "../utils/abi";
 import { useEffect, useState } from "react";
-import { writeContract } from "viem/actions";
+
+import { addressContract } from "../../config";
+import { writeContract } from "wagmi/actions";
 
 export const TimeRoulette = () => {
-  const result = useReadContract({
-    address: addressContract,
-    abi: abi,
-    functionName: "lastRouletteTime",
-  });
-
   const config = useConfig();
 
   const onRunRullette = async () => {
     try {
       const result = await writeContract(config, {
-        abi,
+        abi: abi,
         address: addressContract,
         functionName: "runRoulette",
       });
@@ -25,6 +20,13 @@ export const TimeRoulette = () => {
       console.log(error);
     }
   };
+
+  const result = useReadContract({
+    address: addressContract,
+    abi: abi,
+    functionName: "lastRouletteTime",
+  });
+
   const [currentTime, setCurrentTime] = useState<Date>();
   const [onEndTime, setEndTime] = useState<Date>();
 

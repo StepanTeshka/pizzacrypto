@@ -39,14 +39,17 @@ export const InformationParicipate = () => {
     abi: abi,
     functionName: "lengthParticipants",
   });
+    
+    const data:any[] = user.data as any[];
+    console.log(data)
   return (
     <div>
-      {user.data ? (
-        user.data[1] ? (
+      {data ? (
+        data[1] ? (
           <div>
             <p>Вы уже учавствуете</p>
             <p>
-              Номер вашего билета:<span>{Number(user.data[0])}</span>
+              Номер вашего билета:<span>{Number(data[0])}</span>
             </p>
           </div>
         ) : (
