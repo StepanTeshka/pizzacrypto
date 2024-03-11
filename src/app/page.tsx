@@ -12,7 +12,7 @@ export default function Home() {
         <TimeRoulette />
         <Wheel />
         <InformationParicipate />
-        <ParicipatesInformation />
+        {/* <ParicipatesInformation /> */}
       </div>
     </Bg>
   );
